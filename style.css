@@ -1,0 +1,12 @@
+.combobox-item:active {
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+#combobox-list.combobox-hidden {
+    display: block;
+    margin: 2px 9999px 0;
+}
+
+#combobox-list {
+    overflow-y: scroll;
+}

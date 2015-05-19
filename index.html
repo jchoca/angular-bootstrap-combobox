@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-ng-app="components" data-ng-controller="testCtrl as vm" class="container">
+    <div class="form-group">
+        <combo-box items="vm.destinations" label="desc" value="id" display-limit="4"></combo-box>
+    </div>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="components/components.module.js"></script>
+    <script src="components/test.controller.js"></script>
+    <script src="components/combobox.directive.js"></script>
+</body>

@@ -1,0 +1,20 @@
+<div class="input-group">
+    
+    <div class="input-group-btn" id="dropdown">
+        <button type="button"
+                class="btn btn-default dropdown-toggle"
+                id="dropdown-btn"
+                data-toggle="dropdown"
+                data-ng-click="comboBoxCtrl.updateListSource()"
+                aria-expanded="false"><span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-left" id="combobox-list" role="menu">
+          <li data-ng-repeat="item in comboBoxCtrl.listSource" id="list-item-{{$index}}">
+              <a href="#" id="link-item-{{$index}}" class="combobox-item">{{item.desc}}</a>
+          </li>
+        </ul>
+    </div>
+    <input type="text"
+           class="form-control"
+           data-ng-model="comboBoxCtrl.matchAgainst"
+           data-ng-change="comboBoxCtrl.onChange()">
+</div>
