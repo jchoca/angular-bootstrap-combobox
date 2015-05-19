@@ -113,6 +113,7 @@ function comboBox($timeout) {
                     comboBoxCtrl.matchAgainst = label;
                 });
             };
+            // TODO: there seems to be a bug where the handlers below don't get registered for certain items
             // Need to use 'on' here because the focus event is coming from Bootstrap
             // (otherwise we would use ng-focus)
             link.on('focus', updateInputVal);
