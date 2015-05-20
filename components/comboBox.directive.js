@@ -32,7 +32,6 @@ function comboBox($timeout) {
             focusIndex = 0;
 
         comboBoxCtrl.onChange = onChange;
-        comboBoxCtrl.updateListSource = updateListSource;
         
         // Activate inside a $timeout so activation happens after ng-repeat compilation
         $timeout(activate);
@@ -100,38 +99,32 @@ function comboBox($timeout) {
         }
 
         function attachEvent(index) {
-            console.log(index);
-            var link = iElement[0].querySelector('#link-item-' + index),
-                label;
+            var link = iElement[0].querySelector('#link-item-' + index);
             link = angular.element(link);
-            var updateInputVal = function (event) {
-                // Reset focus index if needed and update the value of the input box.
-                $timeout(function () {
-                    // Do inside $timeout to update matchAgainst after current digest
-                    if (event.type === 'click') { focusIndex = 0; }
-                    label = link.text();
-                    comboBoxCtrl.matchAgainst = label;
-                });
-            };
             // TODO: there seems to be a bug where the handlers below don't get registered for certain items
-            // Need to use 'on' here because the focus event is coming from Bootstrap
+            // Need to use 'on' here because the focus event is coming from Bootstrap/jQuery
             // (otherwise we would use ng-focus)
             link.on('focus', updateInputVal);
             // TODO: put this in ng-click?
             link.on('click', updateInputVal);
         }
-        
-        function updateListSource() {
-            comboBoxCtrl.listSource = comboBoxCtrl.items;
-            attachEventsToLinks();
-        }
+
+        function updateInputVal(event) {
+            event.preventDefault();
+            // Reset focus index if needed and update the value of the input box.
+            $timeout(function () {
+                // Do inside $timeout to update matchAgainst after current digest
+                if (event.type === 'click') { focusIndex = 0; }
+                comboBoxCtrl.matchAgainst = angular.element(event.target).text();
+            });
+        };
         
         function findMatches() {
             focusIndex = 0;
             comboBoxCtrl.listSource = comboBoxCtrl.items.filter(function (item) {
                 return (new RegExp(comboBoxCtrl.matchAgainst || char, "i")).test(item[comboBoxCtrl.label]);
             });
-            attachEventsToLinks();
+            $timeout(attachEventsToLinks);
         }
 
         function onChange() {
