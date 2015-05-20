@@ -2,7 +2,7 @@ angular
     .module('components')
     .directive('comboBox', comboBox);
 
-// TODO add scroll bar for overflow on dropdown contents (i.e., if list length is longer than display length)
+// TODO: hide dropdown if match not found?
 comboBox.$inject = ['$timeout'];
 function comboBox($timeout) {
     'use strict';
