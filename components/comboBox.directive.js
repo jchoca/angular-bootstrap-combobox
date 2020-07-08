@@ -62,7 +62,7 @@ function comboBox($timeout) {
         }
         
         function handleKeyDown(e) {
-            // TODO: make this function as small as possible
+            // TODO: refactor this
             var char = String.fromCharCode(e.which);
             if (e.which === 9) {
                 // Open dropdown on tab
